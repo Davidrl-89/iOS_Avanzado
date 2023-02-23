@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDHero" representedClassName="CDHero" syncable="YES">
+        <attribute name="favorite" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="heroDescription" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="photoUrl" attributeType="String"/>
+        <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDLocations" inverseName="hero" inverseEntity="CDLocations"/>
+    </entity>
+    <entity name="CDLocations" representedClassName="CDLocations" syncable="YES">
+        <attribute name="dateShow" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="latitud" attributeType="String"/>
+        <attribute name="longitud" attributeType="String"/>
+        <relationship name="hero" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHero" inverseName="locations" inverseEntity="CDHero"/>
+    </entity>
+</model>
