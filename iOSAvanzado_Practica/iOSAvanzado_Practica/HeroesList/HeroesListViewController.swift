@@ -53,12 +53,13 @@ class HeroesListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         cell.setHero(model: viewModel.heroesArray[indexPath.row])
+        cell.accessoryType = .disclosureIndicator
+        cell.selectionStyle = .none
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         
         let nextVC = DetailViewController()
         

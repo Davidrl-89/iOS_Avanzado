@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeroesListViewController" customModule="iOSAvanzado_Practica" customModuleProvider="target">
             <connections>
-                <outlet property="logoutButton" destination="4ZX-Cu-Z6o" id="iJh-43-Xxg"/>
+                <outlet property="logoutButton" destination="iGZ-Wx-BKo" id="sjc-BS-O2d"/>
                 <outlet property="tableView" destination="qqn-E0-uzl" id="be6-fp-ZK6"/>
                 <outlet property="view" destination="35y-0n-ygH" id="zKQ-kl-y9g"/>
             </connections>
@@ -21,28 +21,29 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qqn-E0-uzl">
-                    <rect key="frame" x="0.0" y="75" width="393" height="743"/>
+                    <rect key="frame" x="0.0" y="114" width="393" height="704"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="4ZX-Cu-Z6o">
-                    <rect key="frame" x="145" y="42" width="393" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGZ-Wx-BKo">
+                    <rect key="frame" x="299.66666666666669" y="69" width="77.333333333333314" height="35"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Logout"/>
                     <connections>
-                        <action selector="logoutTapped:" destination="-1" eventType="touchUpInside" id="Udy-da-8ea"/>
+                        <action selector="logoutTapped:" destination="-1" eventType="touchUpInside" id="Ywd-99-MHx"/>
                     </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="OPb-Pb-M4f"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="qqn-E0-uzl" firstAttribute="top" secondItem="OPb-Pb-M4f" secondAttribute="top" constant="16" id="BYF-wq-24E"/>
+                <constraint firstItem="iGZ-Wx-BKo" firstAttribute="top" secondItem="OPb-Pb-M4f" secondAttribute="top" constant="10" id="KgA-Dg-jOH"/>
                 <constraint firstItem="OPb-Pb-M4f" firstAttribute="bottom" secondItem="qqn-E0-uzl" secondAttribute="bottom" id="PUw-nD-Z59"/>
+                <constraint firstItem="OPb-Pb-M4f" firstAttribute="trailing" secondItem="iGZ-Wx-BKo" secondAttribute="trailing" constant="16" id="ghX-ro-z9g"/>
+                <constraint firstItem="qqn-E0-uzl" firstAttribute="top" secondItem="iGZ-Wx-BKo" secondAttribute="bottom" constant="10" id="gq4-iJ-nRd"/>
                 <constraint firstItem="OPb-Pb-M4f" firstAttribute="trailing" secondItem="qqn-E0-uzl" secondAttribute="trailing" id="rR4-99-xWw"/>
                 <constraint firstItem="qqn-E0-uzl" firstAttribute="leading" secondItem="OPb-Pb-M4f" secondAttribute="leading" id="tJQ-hX-FBC"/>
             </constraints>
-            <point key="canvasLocation" x="-134" y="-30"/>
+            <point key="canvasLocation" x="-135.1145038167939" y="-30.281690140845072"/>
         </view>
     </objects>
     <resources>
