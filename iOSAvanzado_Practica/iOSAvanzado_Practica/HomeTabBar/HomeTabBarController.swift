@@ -7,7 +7,7 @@
 
 import UIKit
 
-class  HomeTabBarController: UITabBarController {
+class HomeTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,7 @@ class  HomeTabBarController: UITabBarController {
     
     private func setupTabs() {
         
-        let navigationController1  = UINavigationController(rootViewController: HeroesListViewController())
+        let navigationController1 = UINavigationController(rootViewController: HeroesListViewController())
         let tabImage = UIImage(systemName: "text.justify")!
         navigationController1 .tabBarItem = UITabBarItem(title: "TableView", image: tabImage, tag: 0)
         

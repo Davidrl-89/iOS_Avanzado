@@ -9,17 +9,15 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
+    
     @IBOutlet weak var mapView: MKMapView!
     
     var viewModel = MapMiewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.checkLocationServices()
@@ -30,7 +28,6 @@ class MapViewController: UIViewController {
         setupMap()
     }
     
-   
     func setupMap() {
         mapView.showsUserLocation = true
         viewModel.getHeroesAnnotations { arrayAnnotations in

@@ -9,15 +9,14 @@ import Foundation
 import CoreData
 
 @objc(CDHero)
-public class CDHero: NSManagedObject {
-
-    
-}
+public class CDHero: NSManagedObject {}
 
 //MARK: - EXTENSION -
+
 extension CDHero {
     
     //MARK: FUNCON CREAR CDHERO
+    
     static func create(from hero: Hero, context:NSManagedObjectContext) -> CDHero {
         
         let cdHero = CDHero(context: context)

@@ -43,7 +43,7 @@ class HeroesListViewModel {
               !cdHeros.isEmpty else {
             
             print("Heroes Network Call")
-            guard let token = KeychainManager.shared.readData(key: "KCToken") else {return}
+            guard let token = KeychainManager.shared.readData(key: "KCToken") else { return }
             networkModel.token = token
             print(token)
             
@@ -76,7 +76,7 @@ class HeroesListViewModel {
         }
         
         print("Heroes from Core Data")
-        heroesArray = cdHeros.map{ $0.hero }
+        heroesArray = cdHeros.map { $0.hero }
         onSuccess?()
     }
     
@@ -99,7 +99,7 @@ class HeroesListViewModel {
                 }
                 completion()
             }
-        }else {
+        } else {
             completion()
         }
     }
@@ -112,8 +112,9 @@ private extension HeroesListViewModel {
     }
     
     func save(locations: [HeroCoordenates], for hero: Hero) {
-        guard let cdHero = coreDataManager.fetchHeros(id: hero.id) else {return}
-        _ = locations.map{ CDLocations.create(from: $0, for: cdHero, context: coreDataManager.context) }
+        guard let cdHero = coreDataManager.fetchHeros(id: hero.id) else { return }
+        _ = locations.map{ CDLocations.create(from: $0, for: cdHero, context: coreDataManager.context)
+        }
         coreDataManager.saveContext()
     }
 }

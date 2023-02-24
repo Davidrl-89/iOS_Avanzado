@@ -12,7 +12,6 @@ struct KeychainManager {
     
     static let shared = KeychainManager()
     
-    
     func deleteData(key: String) {
         
         // Preparamos la consulta
@@ -67,21 +66,18 @@ struct KeychainManager {
             
             // extraemos la información
             if let existingItem = item as? [String: Any],
-               let username = existingItem[kSecAttrAccount as String] as? String,
-               let passwordData = existingItem[kSecValueData as String] as? Data,
-               let password = String(data: passwordData, encoding: .utf8) {
-            
-                return password
+               let valueData = existingItem[kSecValueData as String] as? Data,
+               let value = String(data: valueData, encoding: .utf8) {
+                
+                return value
             }
             return nil
             
         } else {
             return nil
         }
-        
     }
     
-
     func saveData(key: String, value: String) {
         
         // Preparamos los atributos necesarios
@@ -90,7 +86,6 @@ struct KeychainManager {
             kSecAttrAccount as String: key,
             kSecValueData as String: value.data(using: .utf8)!
         ]
-
         
         // Guardar el usuario
         if SecItemAdd(attributes as CFDictionary, nil) == noErr {
@@ -98,6 +93,5 @@ struct KeychainManager {
         } else {
             debugPrint("Se produjo un error al guardar la información del usuario")
         }
-        
     }
 }

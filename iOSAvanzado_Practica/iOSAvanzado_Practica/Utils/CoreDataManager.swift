@@ -10,7 +10,8 @@ import CoreData
 
 final class CoreDataManager {
     
-  
+    static let shared = CoreDataManager()
+    
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "DBZ")
         container.loadPersistentStores { storeDescription, error in
@@ -22,39 +23,30 @@ final class CoreDataManager {
         return container
     }()
     
-    
-   
-    static let shared = CoreDataManager()
-    
-  
     var context: NSManagedObjectContext {
         persistentContainer.viewContext
     }
     
-   
     func saveContext() {
         context.saveContext()
     }
-    
     
     func deleteAll() {
         saveContext()
     }
     
-
     func fetchHeros() -> [CDHero] {
         let request = CDHero.createFetchRequest()
         
         do {
             let result = try context.fetch(request)
             return result
-        }catch {
+        } catch {
             print("error getting heroes")
         }
         return []
     }
     
-   
     func fetchHeros(id heroId: String) -> CDHero? {
         let request = CDHero.createFetchRequest()
         let predicate = NSPredicate(format: "id==%@", heroId)
@@ -64,34 +56,30 @@ final class CoreDataManager {
         do {
             let result = try context.fetch(request)
             return result.first
-        }catch {
+        } catch {
             print("error getting heroes")
         }
         return nil
     }
     
-   
     func fetchLocations(for heroId: String) -> [CDLocations] {
         let request = CDLocations.createFetchRequest()
-      
+        
         let predicate = NSPredicate(format: "hero.id == %@", heroId)
         request.predicate = predicate
-    
+        
         let sort = NSSortDescriptor(key: "dateShow", ascending: false, selector: #selector(NSString.localizedStandardCompare))
         request.sortDescriptors = [sort]
         
         do {
             let result = try context.fetch(request)
             return result
-        }catch {
+        } catch {
             print("error getting locations")
         }
         return []
     }
 }
-
-
-
 
 extension NSManagedObjectContext {
     func saveContext() {
@@ -99,7 +87,7 @@ extension NSManagedObjectContext {
         guard hasChanges else {return}
         do {
             try save()
-        }catch {
+        } catch {
             fatalError("Error: \(error.localizedDescription)")
         }
     }
