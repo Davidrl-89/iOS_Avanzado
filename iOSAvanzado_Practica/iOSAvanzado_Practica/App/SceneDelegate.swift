@@ -22,18 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         
         //Obtener el keychain
-        var nextVC: UIViewController = UIViewController()
-        if KeychainManager.shared.readData(key: "KCToken") != nil {
-            nextVC = HomeTabBarController()
-        }else {
-           nextVC = LoginViewController()
-        }
 
-        navigationController.setViewControllers([nextVC], animated: true)
+        navigationController.setViewControllers([HomeTabBarController()], animated: true)
         
         window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
     }
+    
 }
 

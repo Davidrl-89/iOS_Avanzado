@@ -16,14 +16,19 @@ class HomeTabBarController: UITabBarController {
         setupTabs()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     private func setupTabs() {
         
         let navigationController1 = UINavigationController(rootViewController: HeroesListViewController())
-        let tabImage = UIImage(systemName: "text.justify")!
+        let tabImage = UIImage(systemName: "text.justify")
         navigationController1 .tabBarItem = UITabBarItem(title: "TableView", image: tabImage, tag: 0)
         
-        let navigationController2 = UINavigationController(rootViewController: MapViewController())
-        let tabImg = UIImage(systemName: "square.grid.3x3.topleft.filled")!
+        let navigationController2 = MapViewController()
+        let tabImg = UIImage(systemName: "map.circle.fill")
         navigationController2.tabBarItem = UITabBarItem(title: "MapView", image: tabImg, tag: 1)
         
         viewControllers = [navigationController1, navigationController2]
