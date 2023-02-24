@@ -27,14 +27,13 @@ final class MapMiewModel {
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             checkLocationAuthorization()
-        } else {
         }
     }
     
     private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
-           break
+            break
         default:
             break
         }
@@ -49,21 +48,17 @@ final class MapMiewModel {
             getHeroesLocationCoreData(for: hero.id)
             let latitudReceived = locations.first?.latitud
             let longitudReceived = locations.first?.longitud
-            guard let latitudVerify = latitudReceived else {return}
-            guard let longitudVerify = longitudReceived else {return}
+            guard let latitudVerify = latitudReceived, let longitudVerify = longitudReceived else { return }
             
-        
             let latitud = Double(latitudVerify)
             let longitud = Double(longitudVerify)
             guard let latitud = latitud,
-                  let longitud = longitud else {return}
+                  let longitud = longitud else { return }
             let annotations = MKPointAnnotation()
             annotations.title = hero.name
-            annotations.coordinate = CLLocationCoordinate2D(latitude:latitud, longitude: longitud)
+            annotations.coordinate = CLLocationCoordinate2D(latitude: latitud, longitude: longitud)
             
             completion(annotations)
         }
-        
     }
-
 }

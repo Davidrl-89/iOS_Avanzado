@@ -8,6 +8,7 @@
 import UIKit
 
 final class LoginViewModel {
+    
     private var networkModel: NetworkModel
     var onError: ((String) -> Void)?
     var onLogin: (() -> Void)?
@@ -31,9 +32,9 @@ final class LoginViewModel {
                 self?.onError?("Wrong token")
                 return
             }
+            
             KeychainManager.shared.saveData(key: "KCToken", value: token)
             self?.onLogin?()
-    
         }
     }
 }
