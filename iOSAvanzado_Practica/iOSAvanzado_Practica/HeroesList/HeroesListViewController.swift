@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class HeroesListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var logoutButton: UIButton!
@@ -15,17 +14,13 @@ class HeroesListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let viewModel = HeroesListViewModel()
     
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "LISTA DE HEROES"
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        
-      
         tableView?.register(UINib(nibName: "HeroesTableViewCell", bundle: nil), forCellReuseIdentifier: "viewCell")
-        
         
         viewModel.onError = { message in
             DispatchQueue.main.async {
@@ -42,51 +37,39 @@ class HeroesListViewController: UIViewController, UITableViewDelegate, UITableVi
         viewModel.viewDidLoad()
     }
     
-    
-    
-     func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.heroesArray.count
     }
     
-    
-   
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-      
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "viewCell", for: indexPath) as? HeroesTableViewCell else {
-           
+            
             return UITableViewCell()
         }
         
-       
         cell.setHero(model: viewModel.heroesArray[indexPath.row])
-       
+        
         return cell
     }
     
-    
-
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-                
-                let nextVC = DetailViewController()
-               
-                let hero = viewModel.heroesArray[indexPath.row]
-                nextVC.set(model: hero)
-                self.navigationController?.pushViewController(nextVC, animated: true)
-            }
+        
+        let nextVC = DetailViewController()
+        
+        let hero = viewModel.heroesArray[indexPath.row]
+        nextVC.set(model: hero)
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
     @IBAction func logoutTapped(_ sender: Any) {
         KeychainManager.shared.deleteData(key: "KCToken")
         navigationController?.setViewControllers([LoginViewController()], animated: false)
         self.navigationController?.popToRootViewController(animated: true)
     }
-    }
-    
-    
-   
-
-
+}

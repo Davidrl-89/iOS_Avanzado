@@ -13,7 +13,6 @@ class HeroesTableViewCell: UITableViewCell {
     @IBOutlet weak var heroeName: UILabel!
     @IBOutlet weak var heroeDescription: UILabel!
     
-
     func setHero(model:Hero) {
         self.heroeName.text = model.name
         self.heroeDescription.text = model.description
@@ -21,5 +20,4 @@ class HeroesTableViewCell: UITableViewCell {
         guard let url = url  else {return}
         self.heroeImage.setImage(url: url)
     }
-    
 }

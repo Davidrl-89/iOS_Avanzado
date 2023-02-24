@@ -8,30 +8,26 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
     var viewModel = LoginViewModel()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+#if DEBUG
         
-        #if DEBUG
-
         username?.text = "drobles988@gmail.com"
         password?.text = "drl2810"
-
-        #endif
-
+        
+#endif
         
         viewModel.onError = { [weak self] message in
             DispatchQueue.main.async {
                 self?.loginButton.isEnabled = true
-              
             }
             print(message)
         }
@@ -40,14 +36,12 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.loginButton.isEnabled = true
                 
-               
                 let nextVC = HomeTabBarController()
                 self?.navigationController?.setViewControllers([nextVC], animated: true)
             }
         }
     }
     
-
     @IBAction func loginPress(_ sender: Any) {
         guard let user = username.text,
               let password = password.text else {
@@ -58,9 +52,6 @@ class LoginViewController: UIViewController {
         }
         
         viewModel.login(with: user, password: password)
-
+        
     }
-    
-  
-
 }
