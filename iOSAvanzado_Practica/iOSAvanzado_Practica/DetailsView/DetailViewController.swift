@@ -17,7 +17,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "HEROE"
+        self.title = hero?.name
         
         guard let hero = hero else { return }
         let url = URL(string: hero.photo)
