@@ -10,13 +10,14 @@ import CoreData
 
 @objc(CDLocations)
 public class CDLocations: NSManagedObject {
-
 }
 
 //MARK: - EXTENSION -
+
 extension CDLocations {
     
     //MARK: FUNCON CREAR CDHERO
+    
     static func create(from heroCoordenates: HeroCoordenates, for hero: CDHero ,context:NSManagedObjectContext) -> CDLocations {
         
         let cdLocations = CDLocations(context: context)
