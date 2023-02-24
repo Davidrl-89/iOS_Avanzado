@@ -9,7 +9,6 @@ import UIKit
 
 class HeroesListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     let viewModel = HeroesListViewModel()
@@ -17,6 +16,13 @@ class HeroesListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "LISTA DE HEROES"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
+        
+        if KeychainManager.shared.readData(key: "KCToken") == nil {
+            navigateToLogin()
+        }
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -35,6 +41,17 @@ class HeroesListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         viewModel.viewDidLoad()
+    }
+    
+    @objc func logout() {
+        KeychainManager.shared.deleteData(key: "KCToken")
+        navigateToLogin()
+    }
+    
+    func navigateToLogin() {
+        let nextVC = LoginViewController(delegate: self)
+        nextVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(nextVC, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,10 +84,10 @@ class HeroesListViewController: UIViewController, UITableViewDelegate, UITableVi
         nextVC.set(model: hero)
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
-    @IBAction func logoutTapped(_ sender: Any) {
-        KeychainManager.shared.deleteData(key: "KCToken")
-        navigationController?.setViewControllers([LoginViewController()], animated: false)
-        self.navigationController?.popToRootViewController(animated: true)
+}
+
+extension HeroesListViewController: LoginDelegate {
+    func dismiss() {
+        viewModel.loadHeroes()
     }
 }

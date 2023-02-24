@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol LoginDelegate {
+    func dismiss()
+}
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var username: UITextField!
@@ -15,8 +19,20 @@ class LoginViewController: UIViewController {
     
     var viewModel = LoginViewModel()
     
+    var delegate: LoginDelegate?
+    
+    init(delegate: LoginDelegate) {
+        super.init(nibName: nil, bundle: nil)
+        self.delegate = delegate
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
 #if DEBUG
         
@@ -35,9 +51,8 @@ class LoginViewController: UIViewController {
         viewModel.onLogin = { [weak self] in
             DispatchQueue.main.async {
                 self?.loginButton.isEnabled = true
-                
-                let nextVC = HomeTabBarController()
-                self?.navigationController?.setViewControllers([nextVC], animated: true)
+                self?.delegate?.dismiss()
+                self?.dismiss(animated: true)
             }
         }
     }
